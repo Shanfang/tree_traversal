@@ -15,15 +15,16 @@ A Node is defined as:
 
 
 bool has_cycle(Node* head) {
+	if(head == NULL) {
+		return 0;
+	}
 	Node* fast = head;
 	Node* slow = head;
-	while(fast->next != NULL) { 
+	while(fast != NULL && fast->next != NULL) { 
 		slow = slow->next;
-		while(fast->next != NULL) {
-			fast = fast->next->next;
-			if(fast == slow) {
-				return 1;
-			}
+		fast = fast->next->next;
+		if(fast == slow) {
+			return 1;
 		}
 	}
 	return 0;
