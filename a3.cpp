@@ -2,14 +2,14 @@
 #include <vector>
 
 using namespace std;
-vector<Node> arr;
 
 struct Node {
     int data;
 	int left;
 	int right;
-	Node(int d = -1, int l = -1, int r = -1):data(d), left(l), right(r) {}
+	//Node(int d = -1, int l = -1, int r = -1):data(d), left(l), right(r) {}
 };
+vector<Node> arr;
 
 
 void preOrder(Node root) {
@@ -48,14 +48,12 @@ int main() {
 
 	//get input
 	for(int i = 0; i < N; i++) {
-        Node node = new Node();
+        Node node;
 		cin >> node.data >> node.left >> node.right;
         arr.push_back(node);
 	}
 
 	Node root  = arr[0];
-
-	//preorder traversal
 	preOrder(root);
 	cout << "\n";
 	inOrder(root);
