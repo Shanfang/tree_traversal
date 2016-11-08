@@ -1,6 +1,8 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
+vector<Node> arr;
 
 struct Node {
     int data;
@@ -9,51 +11,49 @@ struct Node {
 	Node(int d = -1, int l = -1, int r = -1):data(d), left(l), right(r) {}
 };
 
-vector<Node*> arr;
 
-void preOrder(Node* root) {
-	cout << root->data << " ";
-	if(root->left != -1) {
-		preOrder(arr[root->left]);
+void preOrder(Node root) {
+	cout << root.data << " ";
+	if(root.left != -1) {
+		preOrder(arr[root.left]);
 	}
-	if(root->right != -1) {
-		preOrder(arr[root->right]);
+	if(root.right != -1) {
+		preOrder(arr[root.right]);
 	}
 }
 
-void inOrder(Node* root) {
-	if(root->left != -1) {
-		inOrder(arr[root->left]);
+void inOrder(Node root) {
+	if(root.left != -1) {
+		inOrder(arr[root.left]);
 	}
-	cout << root->data << " ";
-	if(root->right != -1) {
-		inOrder(arr[root->right]);
+	cout << root.data << " ";
+	if(root.right != -1) {
+		inOrder(arr[root.right]);
 	}
 }
 
-void postOrder(Node* root) {
-	if(root->left != -1) {
-		postOrder(arr[root->left]);
+void postOrder(Node root) {
+	if(root.left != -1) {
+		postOrder(arr[root.left]);
 	}
-	if(root->right != -1) {
-		postOrder(arr[root->right]);
+	if(root.right != -1) {
+		postOrder(arr[root.right]);
 	}
-	cout << root->data << " ";
+	cout << root.data << " ";
 }
 
 int main() {
 	int N;
 	cin >> N;
-	Node** arr = new Node*[N];
 
 	//get input
 	for(int i = 0; i < N; i++) {
-        Node* node = new Node();
-		cin >> node->data >> node->left >> node->right;
-        arr[i] = node;
+        Node node = new Node();
+		cin >> node.data >> node.left >> node.right;
+        arr.push_back(node);
 	}
 
-	Node* root  = arr[0];
+	Node root  = arr[0];
 
 	//preorder traversal
 	preOrder(root);
@@ -62,6 +62,5 @@ int main() {
 	cout << "\n";
 	postOrder(root);
 	cout << "\n";
-	delete arr;
 	return 0;
 }
